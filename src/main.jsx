@@ -1,10 +1,35 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import GlobalStyles from "./globalStyle";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Home from "./pages/Home";
+import MovieSeries from "./pages/MovieSeries";
 
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+    children: [
+      {
+        path: "/popular",
+        element: <MovieSeries />,
+      },
+      {
+        path: "/movies",
+        element: <MovieSeries />,
+      },
+      {
+        path: "/series",
+        element: <MovieSeries />,
+      },
+    ],
+  },
+]);
+
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+    <RouterProvider router={router} />
+    <GlobalStyles />
+  </React.StrictMode>
+);

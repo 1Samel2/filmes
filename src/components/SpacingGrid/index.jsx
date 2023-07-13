@@ -1,6 +1,7 @@
 import * as React from "react";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
+import Api from "../../services/Api";
 
 export default function SpacingGrid() {
   const [spacing, setSpacing] = React.useState(2);

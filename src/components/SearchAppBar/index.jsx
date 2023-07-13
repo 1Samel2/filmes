@@ -6,6 +6,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
+import { NavLink } from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -54,14 +55,39 @@ export default function SearchAppBar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
-          >
-            Dev
-          </Typography>
+          <div className="section-header">
+            <NavLink
+              to="/popular"
+              style={({ isActive }) => {
+                return {
+                  opacity: isActive ? "1" : "0.7",
+                };
+              }}
+            >
+              Popular
+            </NavLink>
+            <NavLink
+              to="/movies"
+              style={({ isActive }) => {
+                return {
+                  opacity: isActive ? "1" : "0.7",
+                };
+              }}
+            >
+              Filmes
+            </NavLink>
+            <NavLink
+              to="/series"
+              style={({ isActive }) => {
+                return {
+                  opacity: isActive ? "1" : "0.7",
+                };
+              }}
+            >
+              Series
+            </NavLink>
+          </div>
+
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
