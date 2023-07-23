@@ -1,18 +1,11 @@
-import Search from "../../components/SearchAppBar";
-import GridFilmed from "../../components/SpacingGrid";
+import Header from "../../components/Header";
 import { Outlet } from "react-router-dom";
 
-function Home() {
+export default function Home() {
   return (
-    <>
-      <Search />
-      <div>
-        <Outlet />
-        
-        
-      </div>
-    </>
+    <div>
+      <Header />
+      <Outlet />
+    </div>
   );
 }
-
-export default Home;
