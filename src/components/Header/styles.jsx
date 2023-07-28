@@ -36,11 +36,11 @@ export const DivInput = styled.div`
     color: white;
   }
 
-  svg{
+  svg {
     color: white;
   }
 
-    &:active {
-        transform: scale(1.2);
-    }
+  &:active {
+    transform: scale(1.2);
+  }
 `;
