@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import * as C from "./styles";
 import api from "../../services/api";
+import Button from "../../components/Button";
 
 export default function Home() {
   const [dados, setDados] = useState();
@@ -25,6 +26,10 @@ export default function Home() {
             <div className="content-text-paragraph">
               <h1>{dados.title}</h1>
               <p>{dados.overview}</p>
+              <div className="button">
+                <Button>Assista Agora</Button>
+                <Button>Assista o Trailer</Button>
+              </div>
             </div>
             <C.DivImg>
               <img
@@ -35,7 +40,6 @@ export default function Home() {
           </C.Content>
         </C.Container>
       )}
-      <p></p>
     </>
   );
 }

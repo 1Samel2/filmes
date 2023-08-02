@@ -6,7 +6,6 @@ export default function Header() {
   const searchInput = useRef(null);
 
   const handleClick = () => {
-    // Foca no campo de input quando a div for clicada
     if (searchInput.current) {
       searchInput.current.focus();
     }

@@ -58,14 +58,21 @@ export const Content = styled.div`
         font-size: 2rem;
       }
     }
+
     p {
       font-size: 1.5rem;
       line-height: 1.2;
+      margin-bottom: 40px;
 
       @media (max-width: 768px) {
         font-size: 1.1rem;
       }
     }
+  }
+
+  .button {
+    display: flex;
+    gap: 20px;
   }
 `;
 
