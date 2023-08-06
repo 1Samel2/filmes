@@ -7,11 +7,26 @@ export async function getMovies() {
   return results[0];
 }
 
- export async function movieTop() {
+export async function movieTop() {
   const {
     data: { results },
-  } = await api.get("/movie/top_rated");
+  } = await api.get("/movie/popular");
 
-return results
+  return results;
 }
- 
+
+export async function seriesPopular() {
+  const {
+    data: { results },
+  } = await api.get("/tv/top_rated");
+
+  return results;
+}
+
+export async function personals() {
+  const {
+    data: { results },
+  } = await api.get("/person/popular");
+
+  return results;
+}

@@ -3,17 +3,21 @@ import * as C from "./styles";
 import Button from "../../components/Button";
 import { getImages } from "../../utils/getimages";
 import Slider from "../../components/Slider";
-import { getMovies, movieTop } from "../../services/getData";
+import { getMovies, movieTop, seriesPopular, personals } from "../../services/getData";
 
 export default function Home() {
   const [movies, setMovies] = useState();
   const [topMoviesList, setTopMoviesList] = useState();
+  const [seriesPopulares, setSeriesPopulares] = useState();
+  const [personal, setPersonal] = useState();
 
   useEffect(() => {
-    Promise.all([getMovies(), movieTop(),])
-      .then(([movies, topMoviesList]) => {
+    Promise.all([getMovies(), movieTop(), seriesPopular(), personals(),])
+      .then(([movies, topMoviesList, seriesPopulares, personal]) => {
         setMovies(movies);
         setTopMoviesList(topMoviesList);
+        setSeriesPopulares(seriesPopulares);
+        setPersonal(personal);
       })
       .catch((error) => console.error(error));
   }, []);
@@ -38,6 +42,8 @@ export default function Home() {
         </C.Container>
       )}
       {topMoviesList && <Slider info={topMoviesList} title={"Top Filmes"} />}
+      {seriesPopulares && <Slider info={seriesPopulares} title={"Top Series"} />}
+      {personal && <Slider info={personal} title={"Top Ator"} />}
     </>
   );
 }

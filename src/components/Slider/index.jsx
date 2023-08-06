@@ -20,8 +20,11 @@ export default function Slider({ info, title }) {
         {info.map((item, index) => (
           <SwiperSlide key={index}>
             <C.Content>
-              <img src={getImages(item.poster_path)} alt="" />
-              <h3> {item.original_title}</h3>
+              <img
+                src={getImages(item.poster_path || item.profile_path || "")}
+                alt=""
+              />
+              <h3> {item.title || item.name}</h3>
             </C.Content>
           </SwiperSlide>
         ))}

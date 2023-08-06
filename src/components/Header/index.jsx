@@ -9,7 +9,7 @@ export default function Header() {
   window.onscroll = () => {
     if (!changeBackground && window.scrollY > 10) {
       setChangeBackground(true);
-    } else if (changeBackground && window.scrollY <= 10) {
+    }if (changeBackground && window.scrollY <= 10) {
       setChangeBackground(false);
     }
   };
@@ -21,7 +21,7 @@ export default function Header() {
   };
 
   return (
-    <C.Header changeBackground={changeBackground}>
+    <C.Header change={changeBackground}>
       <nav>
         <C.Ul>
           <NavLink to="/">Filme</NavLink>

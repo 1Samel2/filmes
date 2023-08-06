@@ -5,7 +5,7 @@ export const Header = styled.header`
   justify-content: space-around;
   padding: 20px;
   background-color: ${(props) =>
-    props.changeBackground ? "black" : "transparent"};
+    props.change ? "black" : "transparent"};
   transition: background-color 0.6s ease;
   align-items: center;
   z-index: 99;
