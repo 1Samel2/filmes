@@ -1,9 +1,18 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import * as C from "./styles";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 export default function Header() {
+  const [changeBackground, setChangeBackground] = useState(false);
   const searchInput = useRef(null);
+
+  window.onscroll = () => {
+    if (!changeBackground && window.scrollY > 10) {
+      setChangeBackground(true);
+    } else if (changeBackground && window.scrollY <= 10) {
+      setChangeBackground(false);
+    }
+  };
 
   const handleClick = () => {
     if (searchInput.current) {
@@ -12,18 +21,14 @@ export default function Header() {
   };
 
   return (
-    <C.Header>
+    <C.Header changeBackground={changeBackground}>
       <nav>
         <C.Ul>
-          <li>
-            <Link to="/">Filme</Link>
-          </li>
-          <li>
-            <Link to="/movies">Series</Link>
-          </li>
-          <li>
-            <Link to="series">Filmes +18</Link>
-          </li>
+          <NavLink to="/">Filme</NavLink>
+
+          <NavLink to="/movies">Series</NavLink>
+
+          <NavLink to="series">Filmes +18</NavLink>
         </C.Ul>
       </nav>
 
