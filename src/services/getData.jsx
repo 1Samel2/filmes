@@ -30,3 +30,27 @@ export async function personals() {
 
   return results;
 }
+
+export async function movieVideos(moviesVideoId) {
+  const {
+    data: { results },
+  } = await api.get(`/movie/${moviesVideoId}/videos`);
+
+  return results;
+}
+
+export async function details(detailsId) {
+  const {
+    data: { results },
+  } = await api.get(`/movie/${detailsId}`);
+
+  return results;
+}
+
+export async function videoSimilar(similiarId) {
+  const {
+    data: { results },
+  } = await api.get(`/movie/${similiarId}/similar`);
+
+  return results;
+}

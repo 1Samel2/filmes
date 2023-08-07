@@ -5,7 +5,7 @@ import "swiper/css";
 import { getImages } from "../../utils/getimages";
 import * as C from "./styles";
 
-export default function Slider({ info, title }) {
+export default function Slider({ info, title, ...props }) {
   return (
     <C.Container>
       <h2>{title}</h2>
@@ -19,7 +19,7 @@ export default function Slider({ info, title }) {
       >
         {info.map((item, index) => (
           <SwiperSlide key={index}>
-            <C.Content>
+            <C.Content {...props}>
               <img
                 src={getImages(item.poster_path || item.profile_path || "")}
                 alt=""

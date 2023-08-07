@@ -3,35 +3,47 @@ import * as C from "./styles";
 import Button from "../../components/Button";
 import { getImages } from "../../utils/getimages";
 import Slider from "../../components/Slider";
-import { getMovies, movieTop, seriesPopular, personals } from "../../services/getData";
+import { useNavigate } from "react-router-dom";
+import {
+  getMovies,
+  movieTop,
+  seriesPopular,
+  personals,
+} from "../../services/getData";
 
 export default function Home() {
+  const navigate = useNavigate();
+
   const [movies, setMovies] = useState();
   const [topMoviesList, setTopMoviesList] = useState();
   const [seriesPopulares, setSeriesPopulares] = useState();
   const [personal, setPersonal] = useState();
 
   useEffect(() => {
-    Promise.all([getMovies(), movieTop(), seriesPopular(), personals(),])
-      .then(([movies, topMoviesList, seriesPopulares, personal]) => {
-        setMovies(movies);
-        setTopMoviesList(topMoviesList);
-        setSeriesPopulares(seriesPopulares);
-        setPersonal(personal);
-      })
-      .catch((error) => console.error(error));
+    async function getAllData() {
+      Promise.all([getMovies(), movieTop(), seriesPopular(), personals()])
+        .then(([movies, topMoviesList, seriesPopulares, personal]) => {
+          setMovies(movies);
+          setTopMoviesList(topMoviesList);
+          setSeriesPopulares(seriesPopulares);
+          setPersonal(personal);
+        })
+        .catch((error) => console.error(error));
+    }
+    getAllData();
   }, []);
+
 
   return (
     <>
       {movies && (
-        <C.Container img={getImages(movies.backdrop_path)}>
+        <C.Container image={getImages(movies.backdrop_path)}>
           <C.Content>
             <div className="content-text-paragraph">
               <h1>{movies.title}</h1>
               <p>{movies.overview}</p>
               <div className="button">
-                <Button>Assista Agora</Button>
+                <Button onClick="">Assista Agora</Button>
                 <Button>Assista o Trailer</Button>
               </div>
             </div>
@@ -42,8 +54,10 @@ export default function Home() {
         </C.Container>
       )}
       {topMoviesList && <Slider info={topMoviesList} title={"Top Filmes"} />}
-      {seriesPopulares && <Slider info={seriesPopulares} title={"Top Series"} />}
-      {personal && <Slider info={personal} title={"Top Ator"} />}
+      {seriesPopulares && (
+        <Slider info={seriesPopulares} title={"Top Series"} />
+      )}
+      {personal && <Slider info={personal} title={"Top Actor"} />}
     </>
   );
 }
